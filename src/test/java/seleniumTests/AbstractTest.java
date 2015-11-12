@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
+import org.testng.log4testng.Logger;
 import pages.AbstractPage;
 
 import java.util.concurrent.TimeUnit;
@@ -12,6 +13,8 @@ import java.util.concurrent.TimeUnit;
 public class AbstractTest {
 
     private static WebDriver ffdriver;
+
+    private static Logger logger;
 
     public static WebDriver getWebDriver() {
         return ffdriver;
@@ -32,6 +35,7 @@ public class AbstractTest {
     @BeforeTest
     public void initializeAbstractPageDriver() {
         AbstractPage.setFFDriver(ffdriver);
+        logger = Logger.getLogger(AbstractTest.class);
     }
 
     @AfterTest
