@@ -1,8 +1,11 @@
 package seleniumTests;
 
+import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
+import pages.AbstractPage;
 
 import java.util.concurrent.TimeUnit;
 
@@ -14,17 +17,27 @@ public class AbstractTest {
         return ffdriver;
     }
 
-    public AbstractTest() {
+    static {
         if (ffdriver == null) {
             ffdriver = new FirefoxDriver();
             ffdriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-            ffdriver.manage().window().maximize();
+
+            //uncomment the next line to set fullscreen mode!
+
+            //ffdriver.manage().window().maximize();
+            ffdriver.manage().window().setPosition(new Point(-1500, 0));
         }
     }
 
     @BeforeTest
-    public void openBrowser() {
-
+    public void initializeAbstractPageDriver() {
+        AbstractPage.setFFDriver(ffdriver);
     }
+
+    @AfterTest
+    public void afterTest() {
+        ffdriver.close();
+    }
+
 
 }
