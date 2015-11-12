@@ -23,19 +23,22 @@ public class PromoPageSmokeTest extends AbstractTest {
     @Test(suiteName = "Smoke Test", testName = "Test 1; Header testing;")
     public void smokeTest1() {
         PromoPage promoPage = PromoPage.initPage(PromoPage.class);
-        assertEquals(promoPage.getHeaderTitle(), expectedHeaderTitleText, expectedHeaderTextTitleFailure);
+        assertEquals(promoPage.getHeaderTitle(), expectedHeaderTitleText,
+                expectedHeaderTextTitleFailure);
     }
 
     @Test(suiteName = "Smoke Test", testName = "Test 2; Logo testing;")
     public void smokeTest2() {
         PromoPage promoPage = PromoPage.initPage(PromoPage.class);
-        assertFalse(promoPage.getLogo() == null, expectedLogoFailure);
+        assertFalse(promoPage.getLogo() == null,
+                expectedLogoFailure);
     }
 
     @Test(suiteName = "Smoke Test", testName = "Test 3; Description meta test;")
     public void smokeTest3() {
         PromoPage promoPage = PromoPage.initPage(PromoPage.class);
-        assertFalse(promoPage.getDescriptionMetaContent() == expectedDescriptionMetaContent, expectedDescriptionMetaContentFailure);
+        assertFalse(promoPage.getDescriptionMetaContent() == expectedDescriptionMetaContent,
+                expectedDescriptionMetaContentFailure);
     }
 
 }

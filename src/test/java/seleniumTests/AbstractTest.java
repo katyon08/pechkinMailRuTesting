@@ -23,9 +23,9 @@ public class AbstractTest {
             ffdriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
             //uncomment the next line to set fullscreen mode!
-
             //ffdriver.manage().window().maximize();
-            ffdriver.manage().window().setPosition(new Point(-1500, 0));
+            //uncomment the next line to move the window to the left screen!
+            //ffdriver.manage().window().setPosition(new Point(-1500, 0));
         }
     }
 
