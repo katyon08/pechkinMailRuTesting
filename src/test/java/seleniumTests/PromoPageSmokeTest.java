@@ -10,9 +10,13 @@ import static org.testng.Assert.assertFalse;
 public class PromoPageSmokeTest extends AbstractTest {
 
     private static final String expectedHeaderTitleText = "Сервис рассылки email, аналог программы для рассылки писем по email - Pechkin-mail.ru";
+
     private static final String expectedHeaderTextTitleFailure = "Actual Header Title text doesn't equal expected Header text";
+
     private static final String expectedLogoFailure = "Expected logo not found";
+
     private static final String expectedDescriptionMetaContent = "Сервис почтовых рассылок Печкин-mail позволят быстро настроить массовую рассылку, оформить красиво письмо и эффективно разослать Вашим клиентам, минуя спам-фильтр. Есть бесплатная версия!";
+
     private static final String expectedDescriptionMetaContentFailure = "Expected description meta content not found";
 
     @BeforeTest

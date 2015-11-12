@@ -20,22 +20,24 @@ public class AbstractTest {
         return ffdriver;
     }
 
-    static {
-        if (ffdriver == null) {
-            ffdriver = new FirefoxDriver();
-            ffdriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    public static Logger getLogger() {
+        return logger;
+    }
 
-            //uncomment the next line to set fullscreen mode!
-            //ffdriver.manage().window().maximize();
-            //uncomment the next line to move the window to the left screen!
-            //ffdriver.manage().window().setPosition(new Point(-1500, 0));
-        }
+    static {
+        logger = Logger.getLogger(AbstractTest.class);
+        ffdriver = new FirefoxDriver();
+        ffdriver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+
+        //uncomment the next line to set fullscreen mode!
+        //ffdriver.manage().window().maximize();
+        //uncomment the next line to move the window to the left screen!
+        //ffdriver.manage().window().setPosition(new Point(-1500, 0));
     }
 
     @BeforeTest
     public void initializeAbstractPageDriver() {
         AbstractPage.setFFDriver(ffdriver);
-        logger = Logger.getLogger(AbstractTest.class);
     }
 
     @AfterTest
