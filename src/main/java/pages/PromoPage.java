@@ -3,9 +3,6 @@ package pages;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-/**
- * Created by katyon08 on 12.11.2015.
- */
 public class PromoPage extends AbstractPage {
 
     public final static String PATH = "https://pechkin-mail.ru/promo/";
