@@ -1,5 +1,6 @@
 package seleniumTests;
 
+import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
@@ -24,8 +25,9 @@ public class AbstractTest {
     }
 
     static {
-        System.setProperty("org.apache.commons.logging.Log", "org.apache.commons.logging.impl.Jdk14Logger");
+        //System.setProperty("org.apache.commons.logging.Log", "org.apache.commons.logging.impl.Jdk14Logger");
         logger = Logger.getLogger(AbstractTest.class);
+        logger.info("Starting new driver session");
         ffdriver = new FirefoxDriver();
         ffdriver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
 
