@@ -1,20 +1,19 @@
 package seleniumTests;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
-import org.testng.log4testng.Logger;
 import pages.AbstractPage;
-
 import java.util.concurrent.TimeUnit;
 
 public class AbstractTest {
 
     private static WebDriver ffdriver;
 
-    private static Logger logger;
+    private static final Logger logger;
 
     public static WebDriver getWebDriver() {
         return ffdriver;
@@ -25,9 +24,10 @@ public class AbstractTest {
     }
 
     static {
+        System.setProperty("org.apache.commons.logging.Log", "org.apache.commons.logging.impl.Jdk14Logger");
         logger = Logger.getLogger(AbstractTest.class);
         ffdriver = new FirefoxDriver();
-        ffdriver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        ffdriver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
 
         //uncomment the next line to set fullscreen mode!
         //ffdriver.manage().window().maximize();

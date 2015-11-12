@@ -11,13 +11,13 @@ public class PromoPageSmokeTest extends AbstractTest {
 
     private static final String expectedHeaderTitleText = "Сервис рассылки email, аналог программы для рассылки писем по email - Pechkin-mail.ru";
 
-    private static final String expectedHeaderTextTitleFailure = "Actual Header Title text doesn't equal expected Header text";
+    private static final String expectedHeaderTextTitleFailure = "Actual Header Title text doesn't equal expected Header text\n";
 
-    private static final String expectedLogoFailure = "Expected logo not found";
+    private static final String expectedLogoFailure = "Expected logo not found\n";
 
     private static final String expectedDescriptionMetaContent = "Сервис почтовых рассылок Печкин-mail позволят быстро настроить массовую рассылку, оформить красиво письмо и эффективно разослать Вашим клиентам, минуя спам-фильтр. Есть бесплатная версия!";
 
-    private static final String expectedDescriptionMetaContentFailure = "Expected description meta content not found";
+    private static final String expectedDescriptionMetaContentFailure = "Expected description meta content not found\n";
 
     @BeforeTest
     public void before() {
@@ -27,8 +27,7 @@ public class PromoPageSmokeTest extends AbstractTest {
     @Test(suiteName = "Smoke Test", testName = "Test 1; Header testing;")
     public void smokeTest1() {
         PromoPage promoPage = PromoPage.initPage(PromoPage.class);
-        assertEquals(promoPage.getHeaderTitle(), expectedHeaderTitleText,
-                expectedHeaderTextTitleFailure);
+        assertEquals(expectedHeaderTextTitleFailure, expectedHeaderTitleText, promoPage.getHeaderTitle());
     }
 
     @Test(suiteName = "Smoke Test", testName = "Test 2; Logo testing;")
