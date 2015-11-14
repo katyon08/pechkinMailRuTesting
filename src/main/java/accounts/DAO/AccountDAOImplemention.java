@@ -12,10 +12,11 @@ import loggers.LoggerOperator;
 
 public class AccountDAOImplemention implements AccountDAO {
 
-    private Session session = null;
+    volatile private static Session session = null;
 
     @Override
     public void addStudent(Account account) throws SQLException {
+        LoggerOperator.getLogger().info("adding new Account");
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
@@ -114,5 +115,20 @@ public class AccountDAOImplemention implements AccountDAO {
             }
             session = null;
         }
+    }
+
+    @Override
+    public boolean containsAccount(Account account) throws SQLException {
+        if (account == null) throw new NullPointerException();
+        Account otherAccount;
+        if (account.getId() == null) {
+            otherAccount = getAccountByUsername((account.getUsername()));
+            if (otherAccount == null) return false;
+            otherAccount.setId(null);
+        } else {
+            otherAccount = getAccountById(account.getId());
+            if (otherAccount == null) return false;
+        }
+        return !(account.equals(otherAccount));
     }
 }
