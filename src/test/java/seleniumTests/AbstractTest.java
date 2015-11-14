@@ -1,36 +1,26 @@
 package seleniumTests;
 
-import org.apache.log4j.BasicConfigurator;
-import org.apache.log4j.Logger;
-import org.openqa.selenium.Point;
+import loggers.LoggerOperator;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import pages.AbstractPage;
+
 import java.util.concurrent.TimeUnit;
 
 public class AbstractTest {
 
     private static WebDriver ffdriver;
 
-    private static final Logger logger;
-
     public static WebDriver getWebDriver() {
         return ffdriver;
     }
 
-    public static Logger getLogger() {
-        return logger;
-    }
-
     static {
-        //System.setProperty("org.apache.commons.logging.Log", "org.apache.commons.logging.impl.Jdk14Logger");
-        logger = Logger.getLogger(AbstractTest.class);
-        logger.info("Starting new driver session");
         ffdriver = new FirefoxDriver();
         ffdriver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
-
+        LoggerOperator.createLogger();
         //uncomment the next line to set fullscreen mode!
         //ffdriver.manage().window().maximize();
         //uncomment the next line to move the window to the left screen!
