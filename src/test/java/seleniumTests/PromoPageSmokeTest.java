@@ -6,8 +6,9 @@ import pages.PromoPage;
 
 import static org.junit.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
+import static seleniumTests.AbstractTest.getWebDriver;
 
-public class PromoPageSmokeTest extends AbstractTest {
+public class PromoPageSmokeTest extends seleniumTests.AbstractTest {
 
     private static final String expectedHeaderTitleText = "Сервис рассылки email, аналог программы для рассылки писем по email - Pechkin-mail.ru";
 
@@ -24,16 +25,16 @@ public class PromoPageSmokeTest extends AbstractTest {
         getWebDriver().navigate().to(PromoPage.PATH);
     }
 
-    @Test(suiteName = "Smoke Test", testName = "Test 1; Header testing;")
-    public void smokeTest1() {
-        PromoPage promoPage = PromoPage.initPage(PromoPage.class);
-        assertEquals(expectedHeaderTextTitleFailure, expectedHeaderTitleText, promoPage.getHeaderTitle());
-    }
+//    @Test(suiteName = "Smoke Test", testName = "Test 1; Header testing;")
+//    public void smokeTest1() {
+//        PromoPage promoPage = PromoPage.initPage(PromoPage.class);
+//        assertEquals(expectedHeaderTextTitleFailure, expectedHeaderTitleText, promoPage.getHeaderTitle());
+//    }
 
     @Test(suiteName = "Smoke Test", testName = "Test 2; Logo testing;")
     public void smokeTest2() {
         PromoPage promoPage = PromoPage.initPage(PromoPage.class);
-        assertFalse(promoPage.getLogo() == null,
+        assertFalse((promoPage.getLogo() == null),
                 expectedLogoFailure);
     }
 

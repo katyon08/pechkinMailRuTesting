@@ -13,12 +13,12 @@ import java.util.Random;
 @Table(name = "registered")
 public class Account {
 
-    public final int USERNAMELENGTH = 10;
+    public final static int USERNAMELENGTH = 10;
 
-    public final int PASSWORDLENGTH = 10;
+    public final static int PASSWORDLENGTH = 10;
 
     //probability of collision = ( n / (26 ^ USERNAMELENGTH)) ^ (GENERATIONTRYS), where n = amount of already registered accounts;
-    public final int GENERATIONTRYS = 10; //probability of collision with 1 registered account with default USERNAMELENGTH=GENERATIONTRYS=10 equals about 3e-142
+    public final static int GENERATIONTRYS = 10; //probability of collision with 1 registered account with default USERNAMELENGTH=GENERATIONTRYS=10 equals about 3e-142
 
     @Column(name = "username")
     private String username;
@@ -72,7 +72,7 @@ public class Account {
         return "id = " + id + "; username = " + username + "; password = " + password + "; timestamp = " + creationTimeStamp + ";";
     }
 
-    public Account generateRandomAccount() {
+    public static Account generateRandomAccount() {
         Account account = new Account();
         account.setUsername(randomString(USERNAMELENGTH));
         account.setPassword(randomString(PASSWORDLENGTH));
@@ -80,12 +80,15 @@ public class Account {
         return account;
     }
 
-    public Account generateNewAccount() {
+    public static Account generateNewAccount() {
         Account account = null;
         for (int i = 0; i < GENERATIONTRYS; i++) {
             account = generateRandomAccount();
             try {
-                if (!AccountDAOFactory.getInstance().getAccountDAO().containsAccount(account)) {
+                if (!AccountDAOFactory.getInstance().getAccountDAO().
+//                        containsAccount(account)
+        stupidContainsAccount(account)
+                        ) {
                     break;
                 }
             } catch (SQLException e) {
@@ -96,13 +99,14 @@ public class Account {
         return account;
     }
 
-    private String randomString(int length) {
+    private static String randomString(int length) {
         Random random = new Random();
-        String string = "";
+        String string = "", newElement;
+        int rand;
         for (int i = 0; i < length; i++) {
-            string.concat(
-                    Character.toString(
-                            (char) random.nextInt(256)));
+            rand = random.nextInt(26);
+            newElement = String.valueOf((char) (rand + (int) 'a'));
+            string = string + newElement;
         }
         return string;
     }

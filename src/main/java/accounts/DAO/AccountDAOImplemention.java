@@ -15,7 +15,7 @@ public class AccountDAOImplemention implements AccountDAO {
     volatile private static Session session = null;
 
     @Override
-    public void addStudent(Account account) throws SQLException {
+    public void addAccount(Account account) throws SQLException {
         LoggerOperator.getLogger().info("adding new Account");
         try {
             session = HibernateUtil.getSessionFactory().openSession();
@@ -33,7 +33,7 @@ public class AccountDAOImplemention implements AccountDAO {
     }
 
     @Override
-    public void updateStudent(Account account) throws SQLException {
+    public void updateAccount(Account account) throws SQLException {
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
@@ -130,5 +130,19 @@ public class AccountDAOImplemention implements AccountDAO {
             if (otherAccount == null) return false;
         }
         return !(account.equals(otherAccount));
+    }
+
+    @Override
+    public boolean stupidContainsAccount(Account account) throws SQLException {
+        if (account == null) throw new NullPointerException();
+        ArrayList<Account> otherAccounts = (ArrayList) getAllAccounts();
+        boolean containsId = !(account.getId() == null);
+        for (Account otherAccount : otherAccounts) {
+            if (!containsId) {
+                otherAccount.setId(null);
+            }
+            if (account.equals(otherAccount)) return true;
+        }
+        return false;
     }
 }
