@@ -1,6 +1,8 @@
 package seleniumTests;
 
 //import TOR.TORDriver;
+
+import TOR.TOROperator;
 import loggers.LoggerOperator;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -21,7 +23,7 @@ public class AbstractTest {
     static {
         LoggerOperator.createLogger();
         ffdriver = new FirefoxDriver();
-//        ffdriver = TORDriver.tryIt();
+//        ffdriver = TOROperator.startTor();
         ffdriver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
         //uncomment the next line to set fullscreen mode!
         //ffdriver.manage().window().maximize();
@@ -36,8 +38,8 @@ public class AbstractTest {
 
     @AfterTest
     public void afterTest() {
-
-        ffdriver.close();
+        //TOROperator.killFirefox();
+        ffdriver.quit();// close();
     }
 
 

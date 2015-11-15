@@ -30,6 +30,19 @@ public class RegistrationTesting extends AbstractTest {
         } catch (SQLException e) {
             LoggerOperator.getLogger().error("Could not add new created account to database", e);
         }
+        typeRegistrationInformation(registrationPage, account);
+        registrationPage.getRegSubmitButton().click();
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 
+    private void typeRegistrationInformation(RegistrationPage registrationPage, Account account) {
+        registrationPage.getEmailField().sendKeys(account.getUsername());
+        registrationPage.getPasswordField().sendKeys(account.getPassword());
+        registrationPage.getPersCheckbox().click();
+        registrationPage.getDogovorCheckbox().click();
     }
 }
