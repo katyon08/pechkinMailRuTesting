@@ -15,7 +15,7 @@ public class PromoPage extends AbstractPage {
 
     private final static String descriptionMetaXPath = "/html/head[@lang='ru']/meta[@name='description']";
 
-    @FindBy(css = headerTitleCSS)
+    @FindBy(xpath = headerTitleXPath)
     private WebElement headerTitle;
 
     @FindBy(xpath = logoXPath)

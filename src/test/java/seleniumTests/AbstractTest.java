@@ -4,6 +4,7 @@ package seleniumTests;
 
 import TOR.TOROperator;
 import loggers.LoggerOperator;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterTest;
@@ -25,10 +26,10 @@ public class AbstractTest {
         ffdriver = new FirefoxDriver();
 //        ffdriver = TOROperator.startTor();
         ffdriver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
-        //uncomment the next line to set fullscreen mode!
-        //ffdriver.manage().window().maximize();
-        //uncomment the next line to move the window to the left screen!
-        //ffdriver.manage().window().setPosition(new Point(-1500, 0));
+//        uncomment the next line to set fullscreen mode!
+//        ffdriver.manage().window().maximize();
+//        uncomment the next line to move the window to the left screen!
+//        ffdriver.manage().window().setPosition(new Point(-1500, 0));
     }
 
     @BeforeTest
@@ -38,7 +39,7 @@ public class AbstractTest {
 
     @AfterTest
     public void afterTest() {
-        //TOROperator.killFirefox();
+//        TOROperator.killFirefox();
         ffdriver.quit();// close();
     }
 

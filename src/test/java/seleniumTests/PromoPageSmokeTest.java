@@ -25,11 +25,11 @@ public class PromoPageSmokeTest extends seleniumTests.AbstractTest {
         getWebDriver().navigate().to(PromoPage.PATH);
     }
 
-//    @Test(suiteName = "Smoke Test", testName = "Test 1; Header testing;")
-//    public void smokeTest1() {
-//        PromoPage promoPage = PromoPage.initPage(PromoPage.class);
-//        assertEquals(expectedHeaderTextTitleFailure, expectedHeaderTitleText, promoPage.getHeaderTitle());
-//    }
+    @Test(suiteName = "Smoke Test", testName = "Test 1; Header testing;")
+    public void smokeTest1() {
+        PromoPage promoPage = PromoPage.initPage(PromoPage.class);
+        assertEquals(expectedHeaderTextTitleFailure, expectedHeaderTitleText, promoPage.getHeaderTitle());
+    }
 
     @Test(suiteName = "Smoke Test", testName = "Test 2; Logo testing;")
     public void smokeTest2() {
