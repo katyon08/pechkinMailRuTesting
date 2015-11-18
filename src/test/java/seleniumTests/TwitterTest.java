@@ -19,7 +19,7 @@ public class TwitterTest extends AbstractTest {
     @Test
     public void submitTen() throws InterruptedException {
         getWebDriver().navigate().to(TwitterLoginPage.PATH);
-        Thread.sleep(10000);
+//        Thread.sleep(10000);
         TwitterLoginPage.getLogin().sendKeys("hello");
         TwitterLoginPage.getPassword().sendKeys("world");
         TwitterLoginPage.getSubmit().click();

@@ -2,9 +2,7 @@ package seleniumTests;
 
 //import TOR.TORDriver;
 
-import TOR.TOROperator;
 import loggers.LoggerOperator;
-import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterTest;
@@ -15,32 +13,32 @@ import java.util.concurrent.TimeUnit;
 
 public class AbstractTest {
 
-    private static WebDriver ffdriver;
+    private static WebDriver browserDriver;
 
     public static WebDriver getWebDriver() {
-        return ffdriver;
+        return browserDriver;
     }
 
     static {
         LoggerOperator.createLogger();
-        ffdriver = new FirefoxDriver();
-//        ffdriver = TOROperator.startTor();
-        ffdriver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
+        browserDriver = new FirefoxDriver();
+//        browserDriver = TOROperator.startTor();
+        browserDriver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
 //        uncomment the next line to set fullscreen mode!
-//        ffdriver.manage().window().maximize();
+//        browserDriver.manage().window().maximize();
 //        uncomment the next line to move the window to the left screen!
-//        ffdriver.manage().window().setPosition(new Point(-1500, 0));
+//        browserDriver.manage().window().setPosition(new Point(-1500, 0));
     }
 
     @BeforeTest
     public void initializeAbstractPageDriver() {
-        AbstractPage.setFFDriver(ffdriver);
+        AbstractPage.setFFDriver(browserDriver);
     }
 
     @AfterTest
     public void afterTest() {
 //        TOROperator.killFirefox();
-        ffdriver.quit();// close();
+        browserDriver.quit();// close();
     }
 
 
