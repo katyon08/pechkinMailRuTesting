@@ -1,5 +1,6 @@
 package pages.Pechkin;
 
+import accounts.util.Account;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.AbstractPage;
@@ -37,5 +38,11 @@ public class LoginPage extends AbstractPage {
 
     public WebElement getSubmitButton() {
         return submitButton;
+    }
+
+    public void loginAs(Account account) {
+        emailField.sendKeys(account.getUsername() + Account.domainName);
+        passwordField.sendKeys(account.getPassword());
+        submitButton.submit();
     }
 }

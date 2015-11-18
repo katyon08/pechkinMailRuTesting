@@ -52,13 +52,13 @@ public class RegistrationTesting extends AbstractTest {
                                 xpath(logginedAsXpath)).
                         getText().
                         equals(
-                                account.getUsername() + "@yopmail.com▼"
+                                account.getUsername() + Account.domainName + "▼"
                         )));
     }
 
     private void typeRegistrationInformation(RegistrationPage registrationPage, Account account) {
 
-        registrationPage.getEmailField().sendKeys(account.getUsername() + "@yopmail.com");
+        registrationPage.getEmailField().sendKeys(account.getUsername() + Account.domainName);
         registrationPage.getPasswordField().sendKeys(account.getPassword());
         registrationPage.getPersCheckbox().click();
         registrationPage.getDogovorCheckbox().click();

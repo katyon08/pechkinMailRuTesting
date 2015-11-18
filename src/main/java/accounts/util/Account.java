@@ -20,10 +20,12 @@ public class Account {
     //probability of collision = ( n / (26 ^ USERNAMELENGTH)) ^ (GENERATIONTRYS), where n = amount of already registered accounts;
     public final static int GENERATIONTRYS = 10; //probability of collision with 1 registered account with default USERNAMELENGTH=GENERATIONTRYS=10 equals about 3e-142
 
+    public static final String domainName = "@yopmail.com";
+
     @Column(name = "username")
     private String username;
 
-    @Column(name = "allreadyregistred")
+    @Column(name = "alreadyregistred")
     private boolean allreadyregistred;
 
     @Column(name = "password")
