@@ -19,29 +19,29 @@ public class PromoPageSmokeTest extends seleniumTests.AbstractTest {
 
     private static final String expectedDescriptionMetaContentFailure = "Expected description meta content not found\n";
 
-    @BeforeTest
-    public void before() {
-        goToPage(PromoPage.PATH);
-    }
 
     @Test(suiteName = "Smoke Test", testName = "Test 1; Header testing;")
     public void smokeTest1() {
         PromoPage promoPage = PromoPage.initPage(PromoPage.class);
-        assertEquals(expectedHeaderTextTitleFailure, expectedHeaderTitleText,
-                getWebDriver().
+        goToPage(PromoPage.PATH);
+        assertEquals(getWebDriver().
                         getDriver().
-                        getTitle().toString());
+                        getTitle().toString(),
+                expectedHeaderTitleText,
+                expectedHeaderTextTitleFailure);
     }
 
     @Test(suiteName = "Smoke Test", testName = "Test 2; Logo testing;")
     public void smokeTest2() {
         PromoPage promoPage = PromoPage.initPage(PromoPage.class);
+        goToPage(PromoPage.PATH);
         assertFalse((promoPage.getLogo() == null),
                 expectedLogoFailure);
     }
 
     @Test(suiteName = "Smoke Test", testName = "Test 3; Description meta test;")
     public void smokeTest3() {
+        goToPage(PromoPage.PATH);
         PromoPage promoPage = PromoPage.initPage(PromoPage.class);
         assertFalse(promoPage.getDescriptionMetaContent() == expectedDescriptionMetaContent,
                 expectedDescriptionMetaContentFailure);

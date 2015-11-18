@@ -4,10 +4,10 @@ import accounts.DAO.AccountDAOFactory;
 import accounts.util.Account;
 import loggers.LoggerOperator;
 import org.openqa.selenium.By;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pages.Pechkin.LoginPage;
-
 import java.sql.SQLException;
 import java.util.List;
 
@@ -15,10 +15,17 @@ import static org.testng.Assert.assertTrue;
 
 public class LoginTest extends AbstractTest {
 
-
     private static final String headerTitle = "Рабочий стол | Pechkin-mail.ru";
 
     private static final String logginedAsXpath = "/html/body/div[2]/div[2]/ul[2]/li/a";
+
+    private static final String loginErrorXpath = "/html/body/div/div[1]/div[5]/div[2]/div[2]/ul/li";
+
+    private static final String loginErrorTextValue = "Неверный логин и/или пароль.";
+
+    private static final String loginErrorHeaderTitleValue = "Логин | Pechkin-mail.ru";
+
+    private static final String unloginXpaht = "/html/body/div[2]/div[2]/ul[2]/li/ul/li[1]/a";
 
     @BeforeTest
     public void beforeTest() {
@@ -26,9 +33,10 @@ public class LoginTest extends AbstractTest {
     }
 
     @Test(suiteName = "Login page testing", testName = "try login with registered account")
-    public void loginTest() {
+    public void loginTest1() {
         LoginPage loginPage = LoginPage.initPage(LoginPage.class);
         Account account = getLastRegisteredAccount();
+        goToPage(LoginPage.PATH);
         loginPage.loginAs(account);
         assertTrue(
                 (getWebDriver().
@@ -45,6 +53,25 @@ public class LoginTest extends AbstractTest {
                         )));
     }
 
+    @Test(suiteName = "Login page testing", testName = "try login with unregistered account")
+    public void loginTest2() {
+        LoginPage loginPage = LoginPage.initPage(LoginPage.class);
+        goToPage(LoginPage.PATH);
+        Account account = Account.generateNewAccount();
+        loginPage.loginAs(account);
+        assertTrue(
+                (getWebDriver().
+                        getDriver().
+                        getTitle().
+                        equals(loginErrorHeaderTitleValue)
+                ) && (getWebDriver().
+                        getDriver().
+                        findElement(By.
+                                xpath(loginErrorXpath)).
+                        getText().
+                        equals(loginErrorTextValue)));
+    }
+
     private Account getLastRegisteredAccount() {
         List<Account> accounts = null;
         try {
@@ -59,6 +86,5 @@ public class LoginTest extends AbstractTest {
                 null :
                 accounts.get(accounts.size() - 1);
     }
-
 
 }
