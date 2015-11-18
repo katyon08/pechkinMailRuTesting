@@ -2,11 +2,10 @@ package seleniumTests;
 
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import pages.PromoPage;
+import pages.Pechkin.PromoPage;
 
 import static org.junit.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
-import static seleniumTests.AbstractTest.getWebDriver;
 
 public class PromoPageSmokeTest extends seleniumTests.AbstractTest {
 
@@ -22,13 +21,16 @@ public class PromoPageSmokeTest extends seleniumTests.AbstractTest {
 
     @BeforeTest
     public void before() {
-        getWebDriver().navigate().to(PromoPage.PATH);
+        goToPage(PromoPage.PATH);
     }
 
     @Test(suiteName = "Smoke Test", testName = "Test 1; Header testing;")
     public void smokeTest1() {
         PromoPage promoPage = PromoPage.initPage(PromoPage.class);
-        assertEquals(expectedHeaderTextTitleFailure, expectedHeaderTitleText, promoPage.getHeaderTitle());
+        assertEquals(expectedHeaderTextTitleFailure, expectedHeaderTitleText,
+                getWebDriver().
+                        getDriver().
+                        getTitle().toString());
     }
 
     @Test(suiteName = "Smoke Test", testName = "Test 2; Logo testing;")

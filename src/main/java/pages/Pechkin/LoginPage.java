@@ -1,7 +1,8 @@
-package pages;
+package pages.Pechkin;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pages.AbstractPage;
 
 /**
  * Created by katyon08 on 13.11.2015.

@@ -9,14 +9,14 @@ public class BrowserDriverCloser {
     }
 
     public static void close(BrowserDriver browserDriver) throws BrowserNotFoundException, NotImplementedException {
-        if (browserDriver.browser == Browser.FIREFOX) {
-            browserDriver.driver.close();
-        } else if (browserDriver.browser == Browser.OPERA) {
+        if (browserDriver.getBrowser() == Browser.FIREFOX) {
+            browserDriver.getDriver().close();
+        } else if (browserDriver.getBrowser() == Browser.OPERA) {
             throw new NotImplementedException();
-        } else if (browserDriver.browser == Browser.CHROME) {
+        } else if (browserDriver.getBrowser() == Browser.CHROME) {
             throw new NotImplementedException();
-        } else if (browserDriver.browser == Browser.BUNDLE) {
-            browserDriver.driver.close();
+        } else if (browserDriver.getBrowser() == Browser.BUNDLE) {
+            browserDriver.getDriver().close();
             TOROperator.killFirefox();
         } else throw new BrowserNotFoundException();
     }

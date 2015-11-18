@@ -1,7 +1,8 @@
-package pages;
+package pages.Pechkin;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pages.AbstractPage;
 
 public class PromoPage extends AbstractPage {
 

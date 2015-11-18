@@ -23,6 +23,9 @@ public class Account {
     @Column(name = "username")
     private String username;
 
+    @Column(name = "allreadyregistred")
+    private boolean allreadyregistred;
+
     @Column(name = "password")
     private String password;
 
@@ -65,6 +68,14 @@ public class Account {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public boolean isAllreadyregistred() {
+        return allreadyregistred;
+    }
+
+    public void setAllreadyregistred() {
+        this.allreadyregistred = true;
     }
 
     @Override

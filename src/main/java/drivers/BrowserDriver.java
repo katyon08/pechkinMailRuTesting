@@ -4,8 +4,8 @@ import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 
 public class BrowserDriver {
-    public Browser browser;
-    public WebDriver driver;
+    private Browser browser;
+    private WebDriver driver;
 
     public BrowserDriver(WebDriver webDriver, Browser browser) {
         this.browser = browser;
@@ -22,5 +22,13 @@ public class BrowserDriver {
 
     public void moveToLeftScreen() {
         setPosition(-1300, 0);
+    }
+
+    public Browser getBrowser() {
+        return browser;
+    }
+
+    public WebDriver getDriver() {
+        return driver;
     }
 }
