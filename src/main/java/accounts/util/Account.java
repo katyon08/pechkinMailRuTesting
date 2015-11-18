@@ -26,7 +26,7 @@ public class Account {
     private String username;
 
     @Column(name = "alreadyregistred")
-    private boolean allreadyregistred;
+    private boolean allreadyregistred = false;
 
     @Column(name = "password")
     private String password;
@@ -98,10 +98,10 @@ public class Account {
         for (int i = 0; i < GENERATIONTRYS; i++) {
             account = generateRandomAccount();
             try {
-                if (!AccountDAOFactory.getInstance().getAccountDAO().
-//                        containsAccount(account)
-        stupidContainsAccount(account)
-                        ) {
+                if (!AccountDAOFactory.
+                        getInstance().
+                        getAccountDAO().
+                        stupidContainsAccount(account)) {
                     break;
                 }
             } catch (SQLException e) {

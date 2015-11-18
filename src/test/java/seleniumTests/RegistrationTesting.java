@@ -66,13 +66,13 @@ public class RegistrationTesting extends AbstractTest {
     }
 
     private void confirmThrowYOPEmail(String address) {
-        YOPMailMainPage yopMailMainPage = YOPMailMainPage.initPage(YOPMailMainPage.class);
+        YOPMailMainPage.initPage(YOPMailMainPage.class);
         goToPage(YOPMailMainPage.PATH);
         YOPMailMainPage.getAddress().sendKeys(address);
         YOPMailMainPage.getSubmitButton().submit();
         YOPMailMainPage.initialLastEmail();
         YOPMailMainPage.accessConfirmation();
-//        updateDatabaseAccountAsAllreadyRegistred(address);
+        updateDatabaseAccountAsAllreadyRegistred(address);
     }
 
     private void updateDatabaseAccountAsAllreadyRegistred(String address) {
@@ -93,7 +93,7 @@ public class RegistrationTesting extends AbstractTest {
     }
 
     private void addNewUser(String key) {
-        NewUserPage newUserPage = NewUserPage.initPage(NewUserPage.class);
+        NewUserPage.initPage(NewUserPage.class);
         goToPage(NewUserPage.PATH);
         for (WebElement element : NewUserPage.getElements()) {
             element.sendKeys(key);

@@ -22,7 +22,7 @@ public class PromoPageSmokeTest extends seleniumTests.AbstractTest {
 
     @Test(suiteName = "Smoke Test", testName = "Test 1; Header testing;")
     public void smokeTest1() {
-        PromoPage promoPage = PromoPage.initPage(PromoPage.class);
+        PromoPage.initPage(PromoPage.class);
         goToPage(PromoPage.PATH);
         assertEquals(getWebDriver().
                         getDriver().

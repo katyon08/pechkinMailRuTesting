@@ -25,8 +25,6 @@ public class LoginTest extends AbstractTest {
 
     private static final String loginErrorHeaderTitleValue = "Логин | Pechkin-mail.ru";
 
-    private static final String unloginXpaht = "/html/body/div[2]/div[2]/ul[2]/li/ul/li[1]/a";
-
     @BeforeTest
     public void beforeTest() {
         goToPage(LoginPage.PATH);

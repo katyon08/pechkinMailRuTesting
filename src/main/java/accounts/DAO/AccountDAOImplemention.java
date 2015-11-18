@@ -2,6 +2,7 @@ package accounts.DAO;
 
 import accounts.util.Account;
 import accounts.util.HibernateUtil;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 
 import java.sql.SQLException;
@@ -9,6 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import loggers.LoggerOperator;
+import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
 public class AccountDAOImplemention implements AccountDAO {
 
@@ -36,8 +39,13 @@ public class AccountDAOImplemention implements AccountDAO {
     public void updateAccount(Account account) throws SQLException {
         try {
             session = HibernateUtil.getSessionFactory().openSession();
-            session.beginTransaction();
-            session.save(account);
+            Transaction transaction = session.beginTransaction();
+            Account previous = (Account) session.get(Account.class, account.getId());
+            previous.setUsername(account.getUsername());
+            previous.setPassword(account.getPassword());
+            previous.setCreationTimeStamp(account.getCreationTimeStamp());
+            if (account.isAllreadyregistred()) previous.setAllreadyregistred();
+            session.update(previous);
             session.getTransaction().commit();
         } catch (Exception e) {
             LoggerOperator.getLogger().error("Could not update Account in database", e);
@@ -71,7 +79,10 @@ public class AccountDAOImplemention implements AccountDAO {
         Account account = null;
         try {
             session = HibernateUtil.getSessionFactory().openSession();
-            account = (Account) session.load(Account.class, username);
+            session.beginTransaction();
+            Criteria criteria = session.createCriteria(Account.class);
+            criteria.add(Restrictions.eq("username", username));
+            account = (Account) criteria.uniqueResult();
         } catch (Exception e) {
             LoggerOperator.getLogger().error("Could not get Account by username from database", e);
         } finally {
