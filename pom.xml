@@ -7,7 +7,7 @@ http://maven.apache.org/POM/4.0.0 ">
 
     <groupId>pechkinMailRuTesting</groupId>
     <artifactId>ua.ks.rosz.pechkinMailRuTesting</artifactId>
-    <version>0.1</version>
+    <version>6.0</version>
     <build>
         <plugins>
             <plugin>
