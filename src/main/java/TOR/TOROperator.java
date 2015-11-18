@@ -27,7 +27,6 @@ public class TOROperator {
 
     public static void killFirefox() {
         Runtime rt = Runtime.getRuntime();
-
         try {
             rt.exec("taskkill /F /IM firefox.exe");
 

@@ -10,11 +10,11 @@ public abstract class AbstractPage {
 
     private static WebDriver browserDriver;
 
-    public static WebDriver getFFDriver() {
+    public static WebDriver getBrowserDriver() {
         return browserDriver;
     }
 
-    public static void setFFDriver(WebDriver browserDriver) {
+    public static void setBrowserDriver(WebDriver browserDriver) {
         AbstractPage.browserDriver = browserDriver;
     }
 

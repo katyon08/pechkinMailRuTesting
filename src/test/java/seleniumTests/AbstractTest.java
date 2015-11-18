@@ -1,44 +1,44 @@
 package seleniumTests;
 
-//import TOR.TORDriver;
-
+import drivers.*;
 import loggers.LoggerOperator;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import pages.AbstractPage;
 
-import java.util.concurrent.TimeUnit;
+import static loggers.LoggerOperator.getLogger;
 
 public class AbstractTest {
 
-    private static WebDriver browserDriver;
+    private final static Browser browserType = Browser.FIREFOX;
 
-    public static WebDriver getWebDriver() {
+    private static BrowserDriver browserDriver;
+
+    public static BrowserDriver getWebDriver() {
         return browserDriver;
     }
 
     static {
         LoggerOperator.createLogger();
-        browserDriver = new FirefoxDriver();
-//        browserDriver = TOROperator.startTor();
-        browserDriver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
-//        uncomment the next line to set fullscreen mode!
-//        browserDriver.manage().window().maximize();
-//        uncomment the next line to move the window to the left screen!
-//        browserDriver.manage().window().setPosition(new Point(-1500, 0));
+        try {
+            browserDriver = BrowserDriverFactory.getDriver(browserType);
+        } catch (BrowserNotFoundException e) {
+            getLogger().fatal("Could not get driver for " + browserType, e);
+        }
     }
 
     @BeforeTest
     public void initializeAbstractPageDriver() {
-        AbstractPage.setFFDriver(browserDriver);
+        AbstractPage.setBrowserDriver(browserDriver.driver);
     }
 
     @AfterTest
     public void afterTest() {
-//        TOROperator.killFirefox();
-        browserDriver.quit();// close();
+        try {
+            BrowserDriverCloser.close(browserDriver);
+        } catch (BrowserNotFoundException e) {
+            getLogger().fatal("Could not close driver for " + browserType, e);
+        }
     }
 
 
