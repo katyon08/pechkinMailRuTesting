@@ -4,14 +4,13 @@ import accounts.util.Account;
 import accounts.util.HibernateUtil;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
-
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import loggers.LoggerOperator;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
+
 
 public class AccountDAOImplemention implements AccountDAO {
 
